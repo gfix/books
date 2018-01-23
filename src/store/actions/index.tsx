@@ -44,8 +44,8 @@ export function addBook(book: Book): Dispatch<BookAction> {
     );
 }
 
-export function deleteBook(id: string): Dispatch<BookAction> {
+export function deleteBook(book: Book): Dispatch<BookAction> {
     return (dispatch: Dispatch<BookAction>) => (
-        API.FIREBASE.database().ref(`books/${id}`).remove()
+        API.FIREBASE.database().ref(`books/${book.id}`).remove()
     );
 }

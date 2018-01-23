@@ -11,7 +11,7 @@ export interface StateFromProps {
 
 export interface DispatchFromProps {
     addBook: (book: Book) => void;
-    deleteBook: (id: string) => void;
+    deleteBook: (book: Book) => void;
     fetchBooks: () => void;
 }
 
@@ -31,7 +31,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions.BookAction>) => ({
     addBook: (book: Book) => dispatch(Actions.addBook(book)),
-    deleteBook: (id: string) => dispatch(Actions.deleteBook(id)),
+    deleteBook: (book: Book) => dispatch(Actions.deleteBook(book)),
     fetchBooks: () => dispatch(Actions.fetchBooks())
 });
 

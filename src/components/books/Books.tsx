@@ -1,46 +1,28 @@
 import * as React from 'react';
-import { Book } from '../../model';
+import { Book as IBook } from '../../model';
 import 'font-awesome/css/font-awesome.css';
+import { Book } from './Book';
 
-export interface Props {
-    books: Array<Book>;
-    addBook: (book: Book) => void;
-    deleteBook: (id: string) => void;
+interface Props {
+    books: Array<IBook>;
+    addBook: (book: IBook) => void;
+    deleteBook: (book: IBook) => void;
 }
 
-class Books extends React.Component<Props> {
+const Books: React.SFC<Props> = (props: Props) => {
 
-    handleDeleteBook = (event: React.SyntheticEvent<HTMLAnchorElement>, id: string): void => {
+    const handleAddBook = (event: React.SyntheticEvent<HTMLElement>): void => {
         event.preventDefault();
-        this.props.deleteBook(id);
-    }
+        props.addBook({ title: 'Lol', author: { firstName: 'First', lastName: 'Last' } } as IBook);
+    };
 
-    handleAddBook = (event: React.SyntheticEvent<HTMLAnchorElement>): void => {
-        event.preventDefault();
-        this.props.addBook({ title: 'Lol', author: { firstName: 'First', lastName: 'Last' } } as Book);
-    }
-
-    render() {
-        return (
-            <div className="row">
-                <h2 className="col-md-10">New Books</h2>
-                <a className="col-md-2 d-flex justify-content-md-end" href="#" onClick={this.handleAddBook}>Add book</a>
-                {this.props.books.map(book =>
-                    <div key={book.id} className="col-md-4">
-                        <h3>{book.title}</h3>
-                        <p>
-                            Written by {book.author.firstName} {book.author.lastName}. Some information would be nice here. Perhaps the cover photo...
-                        </p>
-                        <p>
-                            <a className="btn btn-danger btn-secondary" href="#" role="button" onClick={(event) => this.handleDeleteBook(event, book.id)}>
-                                Delete <i className="fa fa-trash" aria-hidden={true} />
-                            </a>
-                        </p>
-                    </div>
-                )}
-            </div>
-        );
-    }
-}
+    return (
+        <div className="row">
+            <h2 className="col-md-10">New Books</h2>
+            <a className="col-md-2 d-flex justify-content-md-end" href="#" onClick={handleAddBook}>Add book</a>
+            {props.books.map(book => <Book key={book.id} book={book} deleteBook={props.deleteBook} />)}
+        </div>
+    );
+};
 
 export default Books;
