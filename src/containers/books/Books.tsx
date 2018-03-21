@@ -1,5 +1,5 @@
 import Books from '../../components/books/Books';
-import * as Actions from '../../store/actions/';
+import * as Actions from '../../store/actions';
 import { Book, State } from '../../model';
 import { connect, Dispatch } from 'react-redux';
 import * as React from 'react';

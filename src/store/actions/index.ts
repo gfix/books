@@ -1,7 +1,7 @@
 import { BookActionKey } from '../../constants';
 import { Book } from '../../model';
 import { Dispatch } from 'react-redux';
-import API from '../../api';
+import { API } from '../../api';
 
 export type BookAction = AddBookAction | RemoveBookAction | FetchBooksAction | OtherBookAction;
 
@@ -31,7 +31,7 @@ export function fetchBooks(): Dispatch<BookAction> {
         API.FIREBASE.database().ref('books/').on('value', snapshot => {
             if (snapshot) {
                 const values = snapshot.val();
-                const books = Object.keys(values).map(key => ({ id: key, ...values[key] }));
+                const books = Object.keys(values).map(key => ({ id: key, ...values[ key ] }));
 
                 dispatch(fetchBooksAction(books));
             }

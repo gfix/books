@@ -15,4 +15,4 @@ const API = {
     FIREBASE: firebase
 };
 
-export default API;
+export { API };

@@ -1,5 +1,5 @@
-import { BookAction } from '../actions/index';
-import { BookActionKey } from '../../constants/index';
+import { BookAction } from '../actions';
+import { BookActionKey } from '../../constants';
 import { State } from '../../model';
 
 export function books(state: State, action: BookAction): State {
