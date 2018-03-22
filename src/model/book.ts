@@ -9,6 +9,6 @@ export interface Book {
 }
 
 export interface Author {
-    firstName: string;
-    lastName: string;
+    id: string;
+    name: string;
 }

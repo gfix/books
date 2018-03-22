@@ -6,10 +6,10 @@ export function books(state: State, action: BookAction): State {
     switch (action.type) {
         case BookActionKey.ADD:
             return { ...state, books: state.books.concat(action.book) };
-        case BookActionKey.REMOVE:
-            const index = state.books.indexOf(action.book);
+        case BookActionKey.DELETE:
+            const index = state.books.findIndex(book => book.id === action.id);
             if (index > -1) {
-                return { ...state, books: state.books.splice(index, 1) };
+                return { ...state, books: [ ...state.books.slice(0, index), ...state.books.slice(index + 1) ] };
             }
             return state;
         case BookActionKey.FETCH:

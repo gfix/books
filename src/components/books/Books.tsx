@@ -6,14 +6,14 @@ import { Book } from './Book';
 interface Props {
     books: Array<IBook>;
     addBook: (book: IBook) => void;
-    deleteBook: (book: IBook) => void;
+    deleteBook: (id: string) => void;
 }
 
 const Books: React.SFC<Props> = (props: Props) => {
 
     const handleAddBook = (event: React.SyntheticEvent<HTMLElement>): void => {
         event.preventDefault();
-        props.addBook({ title: 'Lol', author: { firstName: 'First', lastName: 'Last' } } as IBook);
+        props.addBook({ title: 'Lol', author: { name: 'First Last' } } as IBook);
     };
 
     return (

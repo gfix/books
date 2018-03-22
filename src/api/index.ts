@@ -1,18 +1,25 @@
-import * as firebase from 'firebase';
-
-const firebaseConfig = {
-    apiKey: 'AIzaSyBFJe5YGzMSlfR_Zmd7e29GWFVjXqBiCpI',
-    authDomain: 'books-b7f2d.firebaseapp.com',
-    databaseURL: 'https://books-b7f2d.firebaseio.com',
-    projectId: 'books-b7f2d',
-    storageBucket: 'books-b7f2d.appspot.com',
-    messagingSenderId: '15375796782'
-};
-
-firebase.initializeApp(firebaseConfig);
-
 const API = {
-    FIREBASE: firebase
+    BOOKS_URL: 'http://localhost:8080/books/'
 };
 
-export { API };
+const get = (url: string): Promise<Response> => {
+    return fetch(url);
+};
+
+const post = (url: string, body: object): Promise<Response> => {
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+};
+
+const del = (url: string): Promise<Response> => {
+    return fetch(url, {
+        method: 'DELETE'
+    });
+};
+
+export { API, get, post, del };

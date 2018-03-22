@@ -1,6 +1,6 @@
 export enum BookActionKey {
     ADD = 'ADD',
-    REMOVE = 'REMOVE',
+    DELETE = 'DELETE',
     FETCH = 'FETCH',
     OTHER = '__any_other_action__'
 }
