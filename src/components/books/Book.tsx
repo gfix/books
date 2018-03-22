@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Book } from '../../model/';
+import { Card, GridColumn, Image } from 'semantic-ui-react';
 
 interface Props {
     book: Book;
@@ -14,17 +15,21 @@ const Book: React.SFC<Props> = (props: Props) => {
     };
 
     return (
-        <div className="col-md-4">
-            <h3>{props.book.title}</h3>
-            <p>
-                Written by {props.book.author.name}. Some information would be nice here. Perhaps the cover photo...
-            </p>
-            <p>
-                <a className="btn btn-danger btn-secondary" href="#" role="button" onClick={(event) => handleDeleteBook(event)}>
-                    Delete <i className="fa fa-trash" aria-hidden={true} />
-                </a>
-            </p>
-        </div>
+        <GridColumn key={props.book.id}>
+            <Card>
+                <Image src="img/cover.png" />
+                <Card.Content>
+                    <Card.Header content={`${props.book.title}`} />
+                    <Card.Meta>{props.book.author.name}</Card.Meta>
+                    <Card.Description>Info about the book here</Card.Description>
+                </Card.Content>
+                <Card.Content extra={true}>
+                    <a href="#" role="button" onClick={(event) => handleDeleteBook(event)}>
+                        <i className="fa fa-trash" aria-hidden={true} />
+                    </a>
+                </Card.Content>
+            </Card>
+        </GridColumn>
     );
 };
 

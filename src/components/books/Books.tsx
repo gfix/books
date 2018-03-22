@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Book as IBook } from '../../model';
 import 'font-awesome/css/font-awesome.css';
 import { Book } from './Book';
+import { Button, Grid, Icon } from 'semantic-ui-react';
 
 interface Props {
     books: Array<IBook>;
@@ -17,11 +18,15 @@ const Books: React.SFC<Props> = (props: Props) => {
     };
 
     return (
-        <div className="row">
-            <h2 className="col-md-10">New Books</h2>
-            <a className="col-md-2 d-flex justify-content-md-end" href="#" onClick={handleAddBook}>Add book</a>
-            {props.books.map(book => <Book key={book.id} book={book} deleteBook={props.deleteBook} />)}
-        </div>
+        <>
+            <Button animated="vertical" onClick={handleAddBook} style={{ marginBottom: '0.5em' }}>
+                <Button.Content hidden={true}>Add</Button.Content>
+                <Button.Content visible={true}><Icon name="plus" /></Button.Content>
+            </Button>
+            <Grid columns={4} centered={false} doubling={true}>
+                {props.books.map(book => <Book key={book.id} book={book} deleteBook={props.deleteBook} />)}
+            </Grid>
+        </>
     );
 };
 

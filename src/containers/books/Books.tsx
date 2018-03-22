@@ -21,7 +21,7 @@ class BooksContainer extends React.Component<StateFromProps & DispatchFromProps>
     }
 
     render() {
-        return (<Books books={this.props.books} addBook={this.props.addBook} deleteBook={this.props.deleteBook} />);
+        return <Books books={this.props.books} addBook={this.props.addBook} deleteBook={this.props.deleteBook} />;
     }
 }
 
