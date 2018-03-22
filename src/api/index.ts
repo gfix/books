@@ -1,5 +1,5 @@
 const API = {
-    BOOKS_URL: 'http://localhost:8080/books/'
+    BOOKS_API: '/books/'
 };
 
 const get = (url: string): Promise<Response> => {

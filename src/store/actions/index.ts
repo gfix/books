@@ -31,7 +31,7 @@ const deleteBookAction = (id: string): DeleteBookAction => ({ type: BookActionKe
 
 export function fetchBooks(): Dispatch<BookAction> {
     return (dispatch: Dispatch<BookAction>) => { // TODO: Loading stuff and error handling
-        get(API.BOOKS_URL)
+        get(API.BOOKS_API)
             .then(response => response.json())
             .then((books: Array<Book>) => dispatch(fetchBooksAction(books)));
     };
@@ -39,7 +39,7 @@ export function fetchBooks(): Dispatch<BookAction> {
 
 export function addBook(book: Partial<Book>): Dispatch<BookAction> {
     return (dispatch: Dispatch<BookAction>) => {
-        post(API.BOOKS_URL, book)
+        post(API.BOOKS_API, book)
             .then(response => response.json())
             .then((savedBook: Book) => {
                 dispatch(addBookAction(savedBook));
@@ -49,6 +49,6 @@ export function addBook(book: Partial<Book>): Dispatch<BookAction> {
 
 export function deleteBook(id: string): Dispatch<BookAction> {
     return (dispatch: Dispatch<BookAction>) => {
-        del(API.BOOKS_URL + id).then(() => dispatch(deleteBookAction(id)));
+        del(API.BOOKS_API + id).then(() => dispatch(deleteBookAction(id)));
     };
 }
